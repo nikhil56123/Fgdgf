@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Minecraft mod project data",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string" },
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "mcVersion": { "type": "string" },
+        "modType": { "type": "string" },
+        "files": { "type": "array" },
+        "models": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "name", "modType"]
+    },
+    "CommunityMod": {
+      "title": "Community Mod",
+      "description": "Publicly shared mod project",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "projectId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "modType": { "type": "string" },
+        "mcVersion": { "type": "string" },
+        "version": { "type": "string" },
+        "likesCount": { "type": "number" },
+        "commentsCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "projectId", "name", "modType"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Comment on a community mod",
+      "type": "object",
+      "properties": {
+        "modId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["modId", "authorId", "text"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "projects/{projectId}": {
+      "schema": "Project",
+      "description": "User mod projects"
+    },
+    "community_mods/{modId}": {
+      "schema": "CommunityMod",
+      "description": "Publicly shared mods"
+    },
+    "community_mods/{modId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments on mods"
+    },
+    "follows/{followId}": {
+      "schema": "object",
+      "description": "User follows (followId is followerId_followedId)"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "ForgeCraft Studio",
+  "description": "A web-based Minecraft Java modding suite with voxel modeling, code editing, and project export capabilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
